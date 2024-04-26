@@ -2,6 +2,8 @@
 
 Bite Consent is a lightweight React library for managing cookie consent banners with customizable descriptions and actions. It provides an easy way to implement cookie consent functionality in your React applications while ensuring compliance with privacy regulations.
 
+![Screenshot 2024-04-27 at 9 55 22](https://github.com/Seishin/bite-consent/assets/324076/cda2ad05-f5ad-41c5-b4d2-9d0e1459e1e8)
+
 ## Features
 
 - Simple integration with React applications
@@ -14,13 +16,13 @@ Bite Consent is a lightweight React library for managing cookie consent banners 
 You can install Bite Consent via npm or yarn:
 
 ```bash
-npm install bite-consent
+npm install bite-consent framer-motion
 ```
 
 or
 
 ```bash
-yarn add bite-consent
+yarn add bite-consent framer-motion
 ```
 
 ## Usage
