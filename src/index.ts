@@ -1,0 +1,1 @@
+export { BiteConsent } from './BiteConsent'

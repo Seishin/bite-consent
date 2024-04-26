@@ -1,35 +1,34 @@
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
 import terser from '@rollup/plugin-terser'
-import replace from 'rollup-plugin-replace'
+import typescript from '@rollup/plugin-typescript'
+import { readFileSync } from 'fs'
 
-const NODE_ENV = process.env.NODE_ENV || 'development'
+const env = process.env.NODE_ENV || 'development'
+
+const pkg = JSON.parse(readFileSync('./package.json'))
 
 export default {
-  input: 'src/index.jsx',
-  output: {
-    file: 'dist/bite-consent.js',
-    format: 'esm',
-    globals: {
-      react: 'React'
+  input: 'src/index.ts',
+  output: [
+    {
+      file: pkg.main,
+      format: 'esm',
+      sourcemap: true
     }
-  },
+  ],
   plugins: [
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
-    }),
-    resolve({
-      extensions: ['.js', '.jsx']
-    }),
-    commonjs(),
+    replace({ 'process.env.NODE_ENV': JSON.stringify(env), preventAssignment: true }),
     babel({
       babelHelpers: 'runtime',
       exclude: 'node_modules/**',
-      presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
+      presets: [['@babel/preset-env', { modules: false }]],
       plugins: ['@babel/plugin-transform-runtime']
     }),
+    commonjs(),
+    typescript(),
     terser()
   ],
-  external: ['react', 'react-dom']
+  external: ['react', 'react-dom', 'framer-motion']
 }

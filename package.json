@@ -2,11 +2,6 @@
   "name": "bite-consent",
   "version": "0.0.1",
   "description": "BitConsent is a lightweight React library for managing cookie consent in web applications. Easily integrate a customizable cookie banner with options to view the privacy policy or accept cookies with a single click.",
-  "main": "dist/bite-consent.js",
-  "scripts": {
-    "build": "npx rollup -c",
-    "watch": "npx rollup -c -w"
-  },
   "keywords": [
     "React",
     "Cookies",
@@ -29,21 +24,30 @@
     "url": "https://github.com/Seishin/bite-consent"
   },
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npx rollup -c",
+    "watch": "npx rollup -c -w"
+  },
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@babel/plugin-transform-runtime": "^7.24.3",
     "@babel/preset-env": "^7.24.4",
-    "@babel/preset-react": "^7.24.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "rollup": "^4.16.3",
-    "rollup-plugin-replace": "^2.2.0"
-  },
-  "peerDependencies": {
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "rollup-plugin-replace": "^2.2.0",
+    "typescript": "^5.4.5",
+    "framer-motion": "^10.16.5"
   }
 }
