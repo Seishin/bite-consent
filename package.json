@@ -24,6 +24,10 @@
     "Compliance"
   ],
   "author": "Atanas Dimitrov",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Seishin/bite-consent"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.24.4",
