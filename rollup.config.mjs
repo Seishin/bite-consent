@@ -1,5 +1,6 @@
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
@@ -20,13 +21,14 @@ export default {
   ],
   plugins: [
     replace({ 'process.env.NODE_ENV': JSON.stringify(env), preventAssignment: true }),
+    resolve(),
+    commonjs(),
     babel({
       babelHelpers: 'runtime',
       exclude: 'node_modules/**',
       presets: [['@babel/preset-env', { modules: false }]],
       plugins: ['@babel/plugin-transform-runtime']
     }),
-    commonjs(),
     typescript(),
     terser()
   ],
