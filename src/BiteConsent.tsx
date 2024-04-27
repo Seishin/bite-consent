@@ -6,24 +6,27 @@ const CONSENT_COOKIE_NAME = 'cookie_consent'
 interface Props {
   privacyPolicyUrl: string
   text?: string
+  visibility?: 'auto' | 'visible' | 'hidden'
   onAccept?: () => void
 }
 
-const BiteConsent = ({ privacyPolicyUrl, text, onAccept }: Props) => {
-  const [userAlreadyAccepted, setUserAlreadyAccepted] = React.useState(document.cookie.includes(CONSENT_COOKIE_NAME))
+const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', onAccept }: Props) => {
+  const [visible, setVisible] = React.useState(
+    visibility === 'auto' ? !document.cookie.includes(CONSENT_COOKIE_NAME) : visibility === 'visible'
+  )
 
   const handleAccept = () => {
     if (onAccept) {
       onAccept()
     } else {
       document.cookie = `${CONSENT_COOKIE_NAME}=true; max-age=31536000; path=/`
-      setUserAlreadyAccepted(true)
+      setVisible(false)
     }
   }
 
   return (
     <AnimatePresence>
-      {userAlreadyAccepted ? null : (
+      {visible ? (
         <motion.div
           layout
           initial={{ scale: 0.5, y: 10 }}
@@ -106,7 +109,7 @@ const BiteConsent = ({ privacyPolicyUrl, text, onAccept }: Props) => {
             </motion.button>
           </div>
         </motion.div>
-      )}
+      ) : null}
     </AnimatePresence>
   )
 }

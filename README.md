@@ -49,6 +49,15 @@ function App() {
 export default App
 ```
 
+## Props
+
+| Name               | Type                            | Default                                                                                                                                                            | Description                                                                                                                                                                 |
+| ------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `privacyPolicyUrl` | `string`                        | `undefined`                                                                                                                                                        | The URL to your privacy policy. Required.                                                                                                                                   |
+| `text`             | `string`                        | Hey there! We use cookies to keep things running smoothly on our website and to get to know you better. It helps us make your time here as awesome as possible! ❤️ | Custom text to display in the consent banner.                                                                                                                               |
+| `visibility`       | `auto` \| `visible` \| `hidden` | `auto`                                                                                                                                                             | Specifies the visibility of the consent banner. `auto` displays the view based on the availability of the consent cookie, whereas `visible` displays and `hidden` hides it. |
+| `onAccept`         | `function`                      | `() => void`                                                                                                                                                       | A function to be called when the user accepts the cookie policy.                                                                                                            |
+
 ## License
 
 Bite Consent is released under the MIT License.
