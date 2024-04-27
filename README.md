@@ -2,7 +2,7 @@
 
 Bite Consent is a lightweight React library for managing cookie consent banners with customizable descriptions and actions. It provides an easy way to implement cookie consent functionality in your React applications while ensuring compliance with privacy regulations.
 
-![Screenshot 2024-04-27 at 9 55 22](https://github.com/Seishin/bite-consent/assets/324076/cda2ad05-f5ad-41c5-b4d2-9d0e1459e1e8)
+![Screenshot 2024-04-27 at 18 43 55](https://github.com/Seishin/bite-consent/assets/324076/a4df7470-86b4-49a8-89be-73549c410695)
 
 ## Features
 

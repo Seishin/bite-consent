@@ -1,3 +1,4 @@
+import image from '@rollup/plugin-image'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import terser from '@rollup/plugin-terser'
@@ -20,6 +21,7 @@ export default {
   plugins: [
     replace({ 'process.env.NODE_ENV': JSON.stringify(env), preventAssignment: true }),
     resolve(),
+    image(),
     typescript({
       tsconfig: 'tsconfig.json'
     }),
