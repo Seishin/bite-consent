@@ -4,7 +4,7 @@ import React from 'react'
 function App() {
   return (
     <div className="App">
-      <BiteConsent privacyPolicyUrl="https://example.com/privacy-policy" onAccept={() => {}} />
+      <BiteConsent privacyPolicyUrl="https://example.com/privacy-policy" />
     </div>
   )
 }
