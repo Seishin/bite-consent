@@ -34,23 +34,13 @@
     "watch": "npx rollup -c -w"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.4",
-    "@babel/plugin-transform-runtime": "^7.24.3",
-    "@babel/preset-env": "^7.24.4",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/react": "latest",
-    "@types/react-dom": "latest",
     "framer-motion": "^10.16.5",
     "rollup": "^4.16.3",
-    "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-flat-dts": "^2.6.0",
-    "rollup-plugin-replace": "^2.2.0",
     "typescript": "^5.4.5"
   }
 }
