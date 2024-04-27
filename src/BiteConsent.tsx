@@ -2,14 +2,12 @@ import { motion } from 'framer-motion'
 import React from 'react'
 
 interface Props {
-  text: string
-  primaryAction: string
-  onPrimaryActionTap: () => void
-  secondaryAction: string
-  onSecondaryActionTap: () => void
+  privacyPolicyUrl: string
+  text?: string
+  onAccept?: () => void
 }
 
-const BiteConsent = ({ text, primaryAction, onPrimaryActionTap, secondaryAction, onSecondaryActionTap }: Props) => {
+const BiteConsent = ({ privacyPolicyUrl, text, onAccept }: Props) => {
   return (
     <motion.div
       layout
@@ -25,7 +23,8 @@ const BiteConsent = ({ text, primaryAction, onPrimaryActionTap, secondaryAction,
         backgroundColor: '#ffffff',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         padding: '1rem',
-        maxWidth: '16rem',
+        width: '16rem',
+        maxHeight: '18rem',
         borderRadius: '0.25rem',
         display: 'flex',
         flexDirection: 'column',
@@ -37,10 +36,12 @@ const BiteConsent = ({ text, primaryAction, onPrimaryActionTap, secondaryAction,
       <p
         style={{
           fontSize: '0.875rem',
-          textAlign: 'start'
+          textAlign: 'start',
+          overflow: 'scroll'
         }}
       >
-        {text}
+        {text ??
+          'Hey there! We use cookies to keep things running smoothly on our website and to get to know you better. It helps us make your time here as awesome as possible ❤️'}
       </p>
       <div
         style={{
@@ -65,9 +66,9 @@ const BiteConsent = ({ text, primaryAction, onPrimaryActionTap, secondaryAction,
             borderStyle: 'none',
             cursor: 'pointer'
           }}
-          onClick={onSecondaryActionTap}
+          onClick={() => window.open(privacyPolicyUrl, '_blank')}
         >
-          {secondaryAction}
+          Privacy Policy
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -83,9 +84,9 @@ const BiteConsent = ({ text, primaryAction, onPrimaryActionTap, secondaryAction,
             boxShadow: '0 0.1rem 0.25rem rgba(0, 0, 0, 0.1)',
             cursor: 'pointer'
           }}
-          onClick={onPrimaryActionTap}
+          onClick={onAccept}
         >
-          {primaryAction}
+          Got it
         </motion.button>
       </div>
     </motion.div>
