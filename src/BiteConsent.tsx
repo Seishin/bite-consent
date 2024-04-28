@@ -9,7 +9,7 @@ interface Props {
   privacyPolicyUrl: string
   text?: string
   visibility?: 'auto' | 'visible' | 'hidden'
-  position: Position | CustomPosition
+  position?: Position | CustomPosition
   onAccept?: () => void
 }
 
