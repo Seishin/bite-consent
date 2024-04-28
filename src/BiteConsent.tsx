@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CustomPosition, isCustomPosition, Position } from './Position'
 import cookies from './assets/cookies.png'
 
@@ -14,9 +14,13 @@ interface Props {
 }
 
 const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = 'bottom-left', onAccept }: Props) => {
-  const [visible, setVisible] = React.useState(
-    visibility === 'auto' ? !document.cookie.includes(CONSENT_COOKIE_NAME) : visibility === 'visible'
-  )
+  const [visible, setVisible] = React.useState<boolean | undefined>()
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return
+
+    setVisible(visibility === 'auto' ? !document.cookie.includes(CONSENT_COOKIE_NAME) : visibility === 'visible')
+  }, [document.cookie])
 
   const getPosition = () => {
     const errorMessage = `Invalid position! Please provide one of the following: 
