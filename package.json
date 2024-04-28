@@ -1,6 +1,6 @@
 {
   "name": "bite-consent",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "BitConsent is a lightweight React library for managing cookie consent in web applications. Easily integrate a customizable cookie banner with options to view the privacy policy or accept cookies with a single click.",
   "keywords": [
     "React",
