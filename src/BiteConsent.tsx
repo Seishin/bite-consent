@@ -20,7 +20,7 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
     if (typeof window === 'undefined' || typeof document === 'undefined') return
 
     setVisible(visibility === 'auto' ? !document.cookie.includes(CONSENT_COOKIE_NAME) : visibility === 'visible')
-  }, [document.cookie])
+  }, [window, document, visibility])
 
   const getPosition = () => {
     const errorMessage = `Invalid position! Please provide one of the following: 
