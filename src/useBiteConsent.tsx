@@ -4,6 +4,8 @@ import { BiteConsent, CONSENT_COOKIE_NAME } from './BiteConsent'
 import CookieConfig from './CookieConfig'
 import Position, { CustomPosition } from './Position'
 
+const BITE_CONSENT_VIEW_ELEMENT_ID = 'bite-consent-view'
+
 type BiteConsentResult = {
   consentCookie: string | undefined
   show: () => void
@@ -23,10 +25,6 @@ const useBiteConsent = (
   const show = useCallback(async () => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
 
-    if (document.getElementById('bite-consent-view')) {
-      return
-    }
-
     const fontFace = new FontFace(
       'Roboto',
       'url(https://themes.googleusercontent.com/static/fonts/roboto/v9/Pru33qjShpZSmG3z6VYwnT8E0i7KZn-EPnyo3HZu7kw.woff)'
@@ -37,7 +35,7 @@ const useBiteConsent = (
     document.fonts.add(fontFace)
 
     const root = document.createElement('div')
-    root.id = 'bite-consent-view'
+    root.id = BITE_CONSENT_VIEW_ELEMENT_ID
 
     const shadowRoot = root.attachShadow({ mode: 'open' })
 
@@ -52,7 +50,9 @@ const useBiteConsent = (
       />
     )
 
-    document.body.appendChild(root)
+    if (!document.getElementById(BITE_CONSENT_VIEW_ELEMENT_ID)) {
+      document.body.appendChild(root)
+    }
   }, [])
 
   const revoke = useCallback(() => {
