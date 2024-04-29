@@ -52,9 +52,7 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
   }
 
   const handleAccept = () => {
-    if (onAccept) {
-      onAccept()
-    } else if (cookieConfig) {
+    if (cookieConfig) {
       const { name, maxAge, expires, path, domain, secure, sameSite } = cookieConfig
       let cookieString = `${name}=true;`
 
@@ -78,6 +76,8 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
       document.cookie = `${CONSENT_COOKIE_NAME}=true; max-age=31536000; path=/;`
       setVisible(false)
     }
+
+    onAccept?.()
   }
 
   return (
@@ -171,4 +171,4 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
   )
 }
 
-export { BiteConsent }
+export { BiteConsent, CONSENT_COOKIE_NAME }

@@ -27,21 +27,22 @@ yarn add bite-consent
 
 ## Usage
 
-To use Bite Consent in your React application, simply import the CookieConsent component and include it in your component tree:
+To use Bite Consent in your React application, you can now also use the `useBiteConsent` hook:
 
 ```js
 import React from 'react'
-import { BiteConsent } from 'bite-consent'
+import { useBiteConsent } from 'bite-consent'
 
 function App() {
+  const { consentCookie, show, revoke } = useBiteConsent('https://example.com/privacy-policy')
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Welcome to My Website</h1>
       </header>
-      <main>
-        <BiteConsent privacyPolicyUrl="https://example.com/privacy-policy" />
-      </main>
+      <main>{/* Your component content */}</main>
+      {consentCookie ? null : <button onClick={show}>Show Consent Banner</button>}
     </div>
   )
 }
