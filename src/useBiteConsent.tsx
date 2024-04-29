@@ -30,9 +30,9 @@ const useBiteConsent = (
     const root = document.createElement('div')
     root.id = 'bite-consent-view'
 
-    document.body.appendChild(root)
+    const shadowRoot = root.attachShadow({ mode: 'open' })
 
-    createRoot(root).render(
+    createRoot(shadowRoot).render(
       <BiteConsent
         privacyPolicyUrl={privacyPolicyUrl}
         text={text}
@@ -42,6 +42,8 @@ const useBiteConsent = (
         onAccept={onAccept}
       />
     )
+
+    document.body.appendChild(root)
   }, [])
 
   const revoke = useCallback(() => {
