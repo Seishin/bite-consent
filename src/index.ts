@@ -1,4 +1,4 @@
 import { BiteConsent } from './BiteConsent'
-import { CustomPosition, Position } from './Position'
+import Position, { CustomPosition } from './Position'
 
 export { BiteConsent, CustomPosition, Position }

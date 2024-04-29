@@ -56,8 +56,39 @@ export default App
 | `privacyPolicyUrl` | `string`                        | `undefined`                                                                                                                                                          | The URL to your privacy policy. Required.                                                                                                                                   |
 | `text`             | `string`                        | `Hey there! We use cookies to keep things running smoothly on our website and to get to know you better. It helps us make your time here as awesome as possible! ❤️` | Custom text to display in the consent banner.                                                                                                                               |
 | `visibility`       | `auto` \| `visible` \| `hidden` | `auto`                                                                                                                                                               | Specifies the visibility of the consent banner. `auto` displays the view based on the availability of the consent cookie, whereas `visible` displays and `hidden` hides it. |
-| `position`         | `Position` \| `CustomPosition`  | `bottom-left`                                                                                                                                                        | Sets the position of the consent view on the page.                                                                                                                          |
+| `position`         | `Position` \| `CustomPosition`  | `bottom-left`                                                                                                                                                        | Sets the position of the consent view on the page. See below for details.                                                                                                   |
+| `cookieConfig`     | `CookieConfig`                  | -                                                                                                                                                                    | Configuration options for consent cookies. See below for details.                                                                                                           |
 | `onAccept`         | `function`                      | `() => void`                                                                                                                                                         | A function to be called when the user accepts the cookie policy.                                                                                                            |
+
+### Position
+
+| Type           | Description                                       |
+| -------------- | ------------------------------------------------- |
+| `top-left`     | Positions the element at the top left corner.     |
+| `top-right`    | Positions the element at the top right corner.    |
+| `bottom-left`  | Positions the element at the bottom left corner.  |
+| `bottom-right` | Positions the element at the bottom right corner. |
+
+### CustomPosition
+
+| Property | Type                 | Description                                                                  |
+| -------- | -------------------- | ---------------------------------------------------------------------------- |
+| `top`    | `number` \| `string` | The distance from the top of the container. Accepts number or CSS string.    |
+| `left`   | `number` \| `string` | The distance from the left of the container. Accepts number or CSS string.   |
+| `right`  | `number` \| `string` | The distance from the right of the container. Accepts number or CSS string.  |
+| `bottom` | `number` \| `string` | The distance from the bottom of the container. Accepts number or CSS string. |
+
+### CookieConfig
+
+| Property   | Type                        | Description                                                          |
+| ---------- | --------------------------- | -------------------------------------------------------------------- |
+| `name`     | `string`                    | The name or identifier of the consent cookie.                        |
+| `maxAge`   | `number`                    | The maximum age of the consent cookie in seconds.                    |
+| `expires`  | `Date`                      | The expiration date of the consent cookie.                           |
+| `path`     | `string`                    | The path within the website's domain for which the cookie is valid.  |
+| `domain`   | `string`                    | The domain for which the cookie is valid.                            |
+| `secure`   | `boolean`                   | Indicates if the cookie should only be sent over secure connections. |
+| `sameSite` | `Strict` \| `Lax` \| `None` | The SameSite attribute of the consent cookie.                        |
 
 ## License
 

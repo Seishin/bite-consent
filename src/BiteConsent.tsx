@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect } from 'react'
-import { CustomPosition, isCustomPosition, Position } from './Position'
 import cookies from './assets/cookies.png'
+import CookieConfig from './CookieConfig'
+import Position, { CustomPosition, isCustomPosition } from './Position'
 
 const CONSENT_COOKIE_NAME = 'cookie_consent'
 
@@ -10,17 +11,20 @@ interface Props {
   text?: string
   visibility?: 'auto' | 'visible' | 'hidden'
   position?: Position | CustomPosition
+  cookieConfig?: CookieConfig
   onAccept?: () => void
 }
 
-const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = 'bottom-left', onAccept }: Props) => {
+const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = 'bottom-left', cookieConfig, onAccept }: Props) => {
   const [visible, setVisible] = React.useState<boolean | undefined>()
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
 
-    setVisible(visibility === 'auto' ? !document.cookie.includes(CONSENT_COOKIE_NAME) : visibility === 'visible')
-  }, [window, document, visibility])
+    const cookieName = cookieConfig?.name ?? CONSENT_COOKIE_NAME
+
+    setVisible(visibility === 'auto' ? !document.cookie.includes(cookieName) : visibility === 'visible')
+  }, [window, document, cookieConfig, visibility, setVisible])
 
   const getPosition = () => {
     const errorMessage = `Invalid position! Please provide one of the following: 
@@ -50,8 +54,28 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
   const handleAccept = () => {
     if (onAccept) {
       onAccept()
+    } else if (cookieConfig) {
+      const { name, maxAge, expires, path, domain, secure, sameSite } = cookieConfig
+      let cookieString = `${name}=true;`
+
+      if (maxAge) {
+        cookieString += `max-age=${maxAge};`
+      } else if (expires) {
+        cookieString += `expires=${expires.toUTCString()};`
+      } else {
+        cookieString += 'max-age=31536000;'
+      }
+
+      cookieString += `path=${path ?? '/'};`
+
+      domain && (cookieString += `domain=${domain};`)
+      secure && (cookieString += 'secure=true;')
+      sameSite && (cookieString += `SameSite=${sameSite};`)
+
+      document.cookie = cookieString
+      setVisible(false)
     } else {
-      document.cookie = `${CONSENT_COOKIE_NAME}=true; max-age=31536000; path=/`
+      document.cookie = `${CONSENT_COOKIE_NAME}=true; max-age=31536000; path=/;`
       setVisible(false)
     }
   }

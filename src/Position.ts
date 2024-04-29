@@ -22,4 +22,5 @@ const isCustomPosition = (position: any): position is CustomPosition => {
   return true
 }
 
-export { CustomPosition, Position, isCustomPosition }
+export default Position
+export { CustomPosition, isCustomPosition }
