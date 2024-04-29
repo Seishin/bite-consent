@@ -20,12 +20,21 @@ const useBiteConsent = (
 ) => {
   const consentCookie = document.cookie.split(';').find((cookie) => cookie.trim().startsWith(cookieConfig?.name ?? CONSENT_COOKIE_NAME))
 
-  const show = useCallback(() => {
+  const show = useCallback(async () => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
 
     if (document.getElementById('bite-consent-view')) {
       return
     }
+
+    const fontFace = new FontFace(
+      'Roboto',
+      'url(https://themes.googleusercontent.com/static/fonts/roboto/v9/Pru33qjShpZSmG3z6VYwnT8E0i7KZn-EPnyo3HZu7kw.woff)'
+    )
+    fontFace.style = 'normal'
+    await fontFace.load()
+
+    document.fonts.add(fontFace)
 
     const root = document.createElement('div')
     root.id = 'bite-consent-view'

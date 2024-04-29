@@ -113,7 +113,8 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
               textAlign: 'start',
               overflow: 'scroll',
               userSelect: 'none',
-              marginTop: '1.5rem'
+              marginTop: '1.5rem',
+              fontFamily: 'Roboto, sans-serif'
             }}
           >
             {text ??
@@ -140,7 +141,8 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
                 flex: 1,
                 backgroundColor: '#ffffff',
                 borderStyle: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                fontFamily: 'Roboto, sans-serif'
               }}
               onClick={() => window.open(privacyPolicyUrl, '_blank')}
             >
@@ -158,7 +160,8 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
                 padding: '0.65rem',
                 borderRadius: '0.65rem',
                 boxShadow: '0 0.1rem 0.25rem rgba(0, 0, 0, 0.1)',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                fontFamily: 'Roboto, sans-serif'
               }}
               onClick={handleAccept}
             >
