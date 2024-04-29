@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect } from 'react'
-import cookies from './assets/cookies.png'
 import CookieConfig from './CookieConfig'
+import { Cookies } from './Illustrations'
 import Position, { CustomPosition, isCustomPosition } from './Position'
 
 const CONSENT_COOKIE_NAME = 'cookie_consent'
@@ -106,7 +106,7 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
             gap: '1rem'
           }}
         >
-          <img src={cookies} alt="cookie" style={{ width: '3.5rem', height: '3.5rem', position: 'absolute', top: '-2rem', left: '1rem' }} />
+          <Cookies style={{ width: '3.5rem', height: '3.5rem', position: 'absolute', top: '-2rem', left: '1rem' }} />
           <p
             style={{
               fontSize: '0.875rem',
