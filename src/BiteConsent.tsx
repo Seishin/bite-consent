@@ -24,7 +24,7 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
     const cookieName = cookieConfig?.name ?? CONSENT_COOKIE_NAME
 
     setVisible(visibility === 'auto' ? !document.cookie.includes(cookieName) : visibility === 'visible')
-  }, [window, document, cookieConfig, visibility, setVisible])
+  }, [cookieConfig, visibility, setVisible])
 
   const getPosition = () => {
     const errorMessage = `Invalid position! Please provide one of the following: 
@@ -114,7 +114,7 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
               overflow: 'scroll',
               userSelect: 'none',
               marginTop: '1.5rem',
-              fontFamily: 'Roboto, sans-serif'
+              fontWeight: 400
             }}
           >
             {text ??
@@ -132,17 +132,16 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
             <motion.button
               whileHover={{
                 scale: 1.05,
-                backgroundColor: '#f0f0f0',
-                borderRadius: '0.65rem',
-                boxShadow: '0 0.1rem 0.25rem rgba(0, 0, 0, 0.1)'
+                backgroundColor: '#f0f0f0'
               }}
               whileTap={{ scale: 0.95 }}
               style={{
                 flex: 1,
                 backgroundColor: '#ffffff',
                 borderStyle: 'none',
-                cursor: 'pointer',
-                fontFamily: 'Roboto, sans-serif'
+                borderRadius: '0.65rem',
+                fontWeight: 700,
+                cursor: 'pointer'
               }}
               onClick={() => window.open(privacyPolicyUrl, '_blank')}
             >
@@ -156,12 +155,10 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
                 borderStyle: 'none',
                 backgroundColor: '#38bdf8',
                 color: '#ffffff',
-                fontWeight: 'bold',
+                fontWeight: 700,
                 padding: '0.65rem',
                 borderRadius: '0.65rem',
-                boxShadow: '0 0.1rem 0.25rem rgba(0, 0, 0, 0.1)',
-                cursor: 'pointer',
-                fontFamily: 'Roboto, sans-serif'
+                cursor: 'pointer'
               }}
               onClick={handleAccept}
             >

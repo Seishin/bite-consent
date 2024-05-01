@@ -25,17 +25,17 @@ const useBiteConsent = (
   const show = useCallback(async () => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
 
-    const fontFace = new FontFace(
-      'Roboto',
-      'url(https://themes.googleusercontent.com/static/fonts/roboto/v9/Pru33qjShpZSmG3z6VYwnT8E0i7KZn-EPnyo3HZu7kw.woff)'
-    )
-    fontFace.style = 'normal'
-    await fontFace.load()
-
-    document.fonts.add(fontFace)
+    const link = document.createElement('link')
+    link.id = 'insighttap-fonts'
+    link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap'
+    link.rel = 'stylesheet'
+    if (!document.getElementById('insighttap-fonts')) {
+      document.head.appendChild(link)
+    }
 
     const root = document.createElement('div')
     root.id = BITE_CONSENT_VIEW_ELEMENT_ID
+    root.style.fontFamily = 'Roboto'
 
     const shadowRoot = root.attachShadow({ mode: 'open' })
 
