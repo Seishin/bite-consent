@@ -2,7 +2,9 @@ import { useBiteConsent } from 'bite-consent'
 import React, { useEffect } from 'react'
 
 function App() {
-  const { consentCookie, show, revoke } = useBiteConsent('https://example.com/privacy')
+  const { consentCookie, show, revoke } = useBiteConsent({
+    privacyPolicyUrl: 'https://example.com/privacy'
+  })
 
   useEffect(() => {
     show()

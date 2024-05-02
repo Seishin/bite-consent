@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BiteConsent, CONSENT_COOKIE_NAME } from './BiteConsent'
 import CookieConfig from './CookieConfig'
 import Position, { CustomPosition } from './Position'
-import ThemeProvider from './ThemeContext'
+import ThemeProvider, { Theme } from './ThemeContext'
 
 const BITE_CONSENT_VIEW_ELEMENT_ID = 'bite-consent-view'
 
@@ -13,14 +13,19 @@ type BiteConsentResult = {
   revoke: () => void
 }
 
-const useBiteConsent = (
-  privacyPolicyUrl: string,
-  text?: string | undefined,
-  visibility?: 'auto' | 'visible' | 'hidden',
-  position?: Position | CustomPosition,
-  cookieConfig?: CookieConfig,
+type BiteConsentOptions = {
+  privacyPolicyUrl: string
+  text?: string
+  visibility?: 'auto' | 'visible' | 'hidden'
+  position?: Position | CustomPosition
+  cookieConfig?: CookieConfig
+  themeMode?: Theme
   onAccept?: () => void
-) => {
+}
+
+const useBiteConsent = (options: BiteConsentOptions) => {
+  const { privacyPolicyUrl, text, visibility, position, cookieConfig, themeMode, onAccept } = options
+
   const consentCookie = document.cookie.split(';').find((cookie) => cookie.trim().startsWith(cookieConfig?.name ?? CONSENT_COOKIE_NAME))
 
   const show = useCallback(async () => {
@@ -41,7 +46,7 @@ const useBiteConsent = (
     const shadowRoot = root.attachShadow({ mode: 'open' })
 
     createRoot(shadowRoot).render(
-      <ThemeProvider mode="auto">
+      <ThemeProvider mode={themeMode ?? 'auto'}>
         <BiteConsent
           privacyPolicyUrl={privacyPolicyUrl}
           text={text}

@@ -34,7 +34,9 @@ import React from 'react'
 import { useBiteConsent } from 'bite-consent'
 
 function App() {
-  const { consentCookie, show, revoke } = useBiteConsent('https://example.com/privacy-policy')
+  const { consentCookie, show, revoke } = useBiteConsent({
+    privacyPolicyUrl: 'https://example.com/privacy'
+  })
 
   return (
     <div className="App">
@@ -50,7 +52,7 @@ function App() {
 export default App
 ```
 
-## Props
+## BiteConsentOptions
 
 | Name               | Type                            | Default                                                                                                                                                              | Description                                                                                                                                                                 |
 | ------------------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -59,6 +61,7 @@ export default App
 | `visibility`       | `auto` \| `visible` \| `hidden` | `auto`                                                                                                                                                               | Specifies the visibility of the consent banner. `auto` displays the view based on the availability of the consent cookie, whereas `visible` displays and `hidden` hides it. |
 | `position`         | `Position` \| `CustomPosition`  | `bottom-left`                                                                                                                                                        | Sets the position of the consent view on the page. See below for details.                                                                                                   |
 | `cookieConfig`     | `CookieConfig`                  | -                                                                                                                                                                    | Configuration options for consent cookies. See below for details.                                                                                                           |
+| `themeMode`        | `ThemeMode`                     | `auto`                                                                                                                                                               | Sets the theme mode. When `auto` is passed, the widget will automatically observe the theme mode.                                                                           |
 | `onAccept`         | `function`                      | `() => void`                                                                                                                                                         | A function to be called when the user accepts the cookie policy.                                                                                                            |
 
 ### Position
