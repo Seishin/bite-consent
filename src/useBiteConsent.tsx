@@ -19,12 +19,12 @@ type BiteConsentOptions = {
   visibility?: 'auto' | 'visible' | 'hidden'
   position?: Position | CustomPosition
   cookieConfig?: CookieConfig
-  themeMode?: Theme
+  theme?: Theme
   onAccept?: () => void
 }
 
 const useBiteConsent = (options: BiteConsentOptions) => {
-  const { privacyPolicyUrl, text, visibility, position, cookieConfig, themeMode, onAccept } = options
+  const { privacyPolicyUrl, text, visibility, position, cookieConfig, theme, onAccept } = options
 
   const consentCookie = document.cookie.split(';').find((cookie) => cookie.trim().startsWith(cookieConfig?.name ?? CONSENT_COOKIE_NAME))
 
@@ -46,7 +46,7 @@ const useBiteConsent = (options: BiteConsentOptions) => {
     const shadowRoot = root.attachShadow({ mode: 'open' })
 
     createRoot(shadowRoot).render(
-      <ThemeProvider mode={themeMode ?? 'auto'}>
+      <ThemeProvider theme={theme}>
         <BiteConsent
           privacyPolicyUrl={privacyPolicyUrl}
           text={text}

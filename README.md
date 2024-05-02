@@ -1,6 +1,6 @@
 # Bite Consent
 
-Bite Consent is a lightweight React library for managing cookie consent banners with customizable descriptions and actions. It provides an easy way to implement cookie consent functionality in your React applications while ensuring compliance with privacy regulations.
+Bite Consent is a lightweight React library for managing cookie consent views with customizable descriptions and actions. It provides an easy way to implement cookie consent functionality in your React applications while ensuring compliance with privacy regulations.
 
 ![Screenshot 2024-04-27 at 18 43 55](https://github.com/Seishin/bite-consent/assets/324076/a4df7470-86b4-49a8-89be-73549c410695)
 
@@ -35,7 +35,10 @@ import { useBiteConsent } from 'bite-consent'
 
 function App() {
   const { consentCookie, show, revoke } = useBiteConsent({
-    privacyPolicyUrl: 'https://example.com/privacy'
+    privacyPolicyUrl: 'https://example.com/privacy',
+    theme: {
+      mode: 'auto'
+    }
   })
 
   return (
@@ -61,7 +64,7 @@ export default App
 | `visibility`       | `auto` \| `visible` \| `hidden` | `auto`                                                                                                                                                               | Specifies the visibility of the consent banner. `auto` displays the view based on the availability of the consent cookie, whereas `visible` displays and `hidden` hides it. |
 | `position`         | `Position` \| `CustomPosition`  | `bottom-left`                                                                                                                                                        | Sets the position of the consent view on the page. See below for details.                                                                                                   |
 | `cookieConfig`     | `CookieConfig`                  | -                                                                                                                                                                    | Configuration options for consent cookies. See below for details.                                                                                                           |
-| `themeMode`        | `ThemeMode`                     | `auto`                                                                                                                                                               | Sets the theme mode. When `auto` is passed, the widget will automatically observe the theme mode.                                                                           |
+| `theme`            | `Theme`                         | -                                                                                                                                                                    | Theme object containing color configurations for the consent view. See below for details.                                                                                   |
 | `onAccept`         | `function`                      | `() => void`                                                                                                                                                         | A function to be called when the user accepts the cookie policy.                                                                                                            |
 
 ### Position
@@ -93,6 +96,28 @@ export default App
 | `domain`   | `string`                    | The domain for which the cookie is valid.                            |
 | `secure`   | `boolean`                   | Indicates if the cookie should only be sent over secure connections. |
 | `sameSite` | `Strict` \| `Lax` \| `None` | The SameSite attribute of the consent cookie.                        |
+
+### Theme
+
+The `theme` object allows customization of the colors used in the consent banner.
+
+| Property | Type        | Description                          |
+| -------- | ----------- | ------------------------------------ |
+| `mode`   | `ThemeMode` | The theme mode.                      |
+| `light`  | `ColorSet`  | Color configurations for light mode. |
+| `dark`   | `ColorSet`  | Color configurations for dark mode.  |
+
+ColorSet Properties:
+
+- `background`: Background color of the consent banner.
+- `text`: Text color of the consent banner.
+- `shadow`: Box shadow of the consent banner.
+- `primaryActionBackground`: Background color of primary action buttons.
+- `primaryActionHoverBackground`: Background color of primary action buttons on hover.
+- `primaryActionText`: Text color of primary action buttons.
+- `secondaryActionBackground`: Background color of secondary action buttons.
+- `secondaryActionText`: Text color of secondary action buttons.
+- `secondaryActionHoverBackground`: Background color of secondary action buttons on hover.
 
 ## License
 

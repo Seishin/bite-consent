@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import CookieConfig from './CookieConfig'
 import { Cookies } from './Illustrations'
 import Position, { CustomPosition, isCustomPosition } from './Position'
+import { useTheme } from './ThemeContext'
 
 const CONSENT_COOKIE_NAME = 'cookie_consent'
 
@@ -17,6 +18,9 @@ interface Props {
 
 const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = 'bottom-left', cookieConfig, onAccept }: Props) => {
   const [visible, setVisible] = React.useState<boolean | undefined>()
+  const theme = useTheme()
+
+  const colorSet = theme.mode === 'light' ? theme.light : theme.dark
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
@@ -93,8 +97,9 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
             position: 'fixed',
             ...getPosition(),
             zIndex: 9999,
-            backgroundColor: '#ffffff',
-            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+            backgroundColor: colorSet.background,
+            color: colorSet.text,
+            boxShadow: colorSet.shadow,
             padding: '1rem',
             width: '18rem',
             maxHeight: '18rem',
@@ -132,12 +137,13 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
             <motion.button
               whileHover={{
                 scale: 1.05,
-                backgroundColor: '#f0f0f0'
+                backgroundColor: colorSet.secondaryActionHoverBackground
               }}
               whileTap={{ scale: 0.95 }}
               style={{
                 flex: 1,
-                backgroundColor: '#ffffff',
+                color: colorSet.secondaryActionText,
+                backgroundColor: colorSet.secondaryActionBackground,
                 borderStyle: 'none',
                 borderRadius: '0.65rem',
                 fontWeight: 700,
@@ -148,13 +154,13 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
               Privacy Policy
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, backgroundColor: colorSet.primaryActionHoverBackground }}
               whileTap={{ scale: 0.95 }}
               style={{
                 flex: 1,
                 borderStyle: 'none',
-                backgroundColor: '#38bdf8',
-                color: '#ffffff',
+                backgroundColor: colorSet.primaryActionBackground,
+                color: colorSet.primaryActionText,
                 fontWeight: 700,
                 padding: '0.65rem',
                 borderRadius: '0.65rem',

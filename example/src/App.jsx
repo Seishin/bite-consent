@@ -3,7 +3,10 @@ import React, { useEffect } from 'react'
 
 function App() {
   const { consentCookie, show, revoke } = useBiteConsent({
-    privacyPolicyUrl: 'https://example.com/privacy'
+    privacyPolicyUrl: 'https://example.com/privacy',
+    theme: {
+      mode: 'auto'
+    }
   })
 
   useEffect(() => {
@@ -13,7 +16,14 @@ function App() {
   return (
     <div
       className="App"
-      style={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+      style={{
+        height: '100vh',
+        backgroundColor: '#000',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
     >
       <h2>Cookie Consent</h2>
       <p>{consentCookie ?? 'undefined'}</p>
