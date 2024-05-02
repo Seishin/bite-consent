@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BiteConsent, CONSENT_COOKIE_NAME } from './BiteConsent'
 import CookieConfig from './CookieConfig'
 import Position, { CustomPosition } from './Position'
+import ThemeProvider from './ThemeContext'
 
 const BITE_CONSENT_VIEW_ELEMENT_ID = 'bite-consent-view'
 
@@ -40,14 +41,16 @@ const useBiteConsent = (
     const shadowRoot = root.attachShadow({ mode: 'open' })
 
     createRoot(shadowRoot).render(
-      <BiteConsent
-        privacyPolicyUrl={privacyPolicyUrl}
-        text={text}
-        visibility={visibility}
-        position={position}
-        cookieConfig={cookieConfig}
-        onAccept={onAccept}
-      />
+      <ThemeProvider mode="auto">
+        <BiteConsent
+          privacyPolicyUrl={privacyPolicyUrl}
+          text={text}
+          visibility={visibility}
+          position={position}
+          cookieConfig={cookieConfig}
+          onAccept={onAccept}
+        />
+      </ThemeProvider>
     )
 
     if (!document.getElementById(BITE_CONSENT_VIEW_ELEMENT_ID)) {
