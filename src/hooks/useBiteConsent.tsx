@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BiteConsent, CONSENT_COOKIE_NAME } from './BiteConsent'
-import CookieConfig from './CookieConfig'
-import Position, { CustomPosition } from './Position'
-import ThemeProvider, { Theme } from './ThemeContext'
+import { BiteConsent, CONSENT_COOKIE_NAME } from '../components/BiteConsent'
+import CookieConfig from '../config/CookieConfig'
+import Position, { CustomPosition } from '../utils/Position'
+import ThemeProvider, { Theme } from '../context/ThemeContext'
 
 const BITE_CONSENT_VIEW_ELEMENT_ID = 'bite-consent-view'
 
