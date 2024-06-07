@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect } from 'react'
-import CookieConfig from './CookieConfig'
+import CookieConfig from '../config/CookieConfig'
 import { Cookies } from './Illustrations'
-import Position, { CustomPosition, isCustomPosition } from './Position'
-import { useTheme } from './ThemeContext'
+import Position, { CustomPosition, isCustomPosition } from '../utils/Position'
+import { useTheme } from '../context/ThemeContext'
 
 const CONSENT_COOKIE_NAME = 'cookie_consent'
 
