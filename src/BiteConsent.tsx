@@ -116,7 +116,7 @@ const BiteConsent = ({ privacyPolicyUrl, text, visibility = 'auto', position = '
             style={{
               fontSize: '0.875rem',
               textAlign: 'start',
-              overflow: 'scroll',
+              overflow: 'auto',
               userSelect: 'none',
               marginTop: '1.5rem',
               fontWeight: 400
